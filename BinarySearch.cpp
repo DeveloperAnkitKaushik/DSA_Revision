@@ -1,61 +1,67 @@
 #include <iostream>
- 
+
 using namespace std;
 
-int startingOcc(int arr[], int size, int key){
-    int starting = 0;
-    int ending = size - 1;
-    int mid = starting + (ending - starting)/2;
-    int ans = -1;
+int main()
+{
+    int arr[] = {12, 23, 34, 2, 3, 4};
+    int size = sizeof(arr) / sizeof(int);
+    int s = 0;
+    int e = size - 1;
+    int mid = s + (e - s) / 2;
 
-    while(starting<=ending){
-
-        if(arr[mid] == key){
-            ans = mid;
-            ending = mid -1;
+    while (s < e)
+    {
+        if (arr[mid] >= arr[0])
+        {
+            s = mid + 1;
         }
-
-        else if(arr[mid] > key){
-            ending = mid-1;
+        else
+        {
+            e = mid;
         }
-
-        else if(arr[mid] < key){
-            starting = mid+1;
-        }
-
-        mid = starting + (ending - starting)/2;
+        mid = s + (e - s) / 2;
     }
-    return ans;
-}
 
-int endingOcc(int arr[], int size, int key){
-    int starting = 0;
-    int ending = size - 1;
-    int mid = starting + (ending - starting)/2;
-    int ans = -1;
-
-    while(starting<=ending){
-        if(arr[mid] == key){
-            ans = mid;
-            starting = mid +1;
+    int pivot = s;
+    int target = 34;
+    char result = "Not Present";
+    if (arr[pivot] <= target <= arr[size - 1])
+    {
+        s = pivot;
+        e = size - 1;
+        mid = s + (e - s) / 2;
+        while (s < e)
+        {
+            if (arr[mid] == target)
+            {
+                cout << "Present in line 2";
+            }
+            else if (arr[mid] > target)
+            {
+                e = mid - 1;
+            }
+            else if (arr[mid] < target)
+            {
+                s = mid + 1;
+            }
         }
-        else if(arr[mid] > key){
-            ending = mid-1;
-        }
-        else if(arr[mid] < key){
-            starting = mid+1;
-        }
-
-        mid = starting + (ending - starting)/2;
     }
-    return ans;
-}
- 
-int main(){
-    int arr[] = {1,2,3,3,3,5};
-    int size = 5;
-    int key = 3;
-
-    cout << startingOcc(arr,size,key) << endl;
-    cout << endingOcc(arr,size,key);    
+    else
+    {
+        s = 0;
+        e = pivot;
+        if (arr[mid] == target)
+        {
+            cout << "Present in line 1";
+        }
+        else if (arr[mid] > target)
+        {
+            e = mid - 1;
+        }
+        else if (arr[mid] < target)
+        {
+            s = mid + 1;
+        }
+    }
 }
