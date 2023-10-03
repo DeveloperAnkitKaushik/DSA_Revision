@@ -1,10 +1,14 @@
 #include <iostream>
- 
-using namespace std;
- 
-int main(){
-    int n = 23;
-	int *p = &n;
 
-    cout << *p;
+using namespace std;
+
+void print(int *p)
+{
+    cout << *p << endl;
+}
+
+int main()
+{
+    char *a = "ankitkasuhik";
+    cout << a;
 }
