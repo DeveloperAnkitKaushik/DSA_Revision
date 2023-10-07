@@ -2,14 +2,23 @@
  
 using namespace std;
  
-int factorial(int n){
-    if(n == 0){
-        return 1;
+void fibonacci(int f, int s,int end){
+    int next = 0;
+    int temp = 0;
+    if(next == end){
+        return ;
     }
-    return n*factorial(n-1); 
+
+    next++;
+    cout << f << " " << s << " ";
+    temp = s;
+    s = s+f;
+    f = temp;
+
+    fibonacci(f,s,next);
 }
 
 int main(){
-    int n = 5;
-    cout << factorial(n);   
+    int first=0,second=1,end=8;
+    fibonacci(first,second,end);   
 }
