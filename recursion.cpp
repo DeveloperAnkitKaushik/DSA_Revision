@@ -1,24 +1,46 @@
 #include <iostream>
  
 using namespace std;
- 
-void fibonacci(int f, int s,int end){
-    int next = 0;
-    int temp = 0;
-    if(next == end){
+
+void merge(int *arr,int s,int e){
+    int mid = s+(e-s)/2;
+    int size1 = mid-s+1;
+    int size2 = e-mid;
+
+    int *first = new int[size1];
+    int *second = new int[size2];
+
+    int k = s;
+    for(int i=0;i<size1;i++){
+        first[i] = arr[k++];
+    }
+
+    int k = mid+1;
+    for(int i=0;i<size2;i++){
+        second[i] = arr[k++];
+    }
+}
+
+void mergeSort(int arr[],int s,int e){
+    if(s>e){
         return ;
     }
 
-    next++;
-    cout << f << " " << s << " ";
-    temp = s;
-    s = s+f;
-    f = temp;
+    int mid = s+(e-s)/2;
 
-    fibonacci(f,s,next);
+    //Left part
+    mergeSort(s,mid);
+
+    //right part
+    mergeSort(mid,e);
+
+    //merge
+    merge(arr,s,e);
 }
-
+ 
 int main(){
-    int first=0,second=1,end=8;
-    fibonacci(first,second,end);   
+    int arr[] = {12,23,45,56,13,1,45,12};
+    int size = sizeof(arr)/sizeof(int);
+
+    mergeSort(arr,0,size-1);
 }
