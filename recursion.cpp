@@ -1,17 +1,16 @@
 #include <iostream>
-
+ 
 using namespace std;
-
-int fibonacci(int n)
-{
-    if (n == 0 || n == 1)
-    {
-        return n;
+ 
+int root(int num,int root_num){
+    if(root_num == 0){
+        return 1;
     }
-    return fibonacci(n - 1) + fibonacci(n - 2);
+
+    int ans = num*root(num,root_num-1);
+    return ans;
 }
 
-int main()
-{
-    cout << fibonacci(7);
+int main(){
+    cout << root(2,100);
 }
