@@ -2,18 +2,33 @@
  
 using namespace std;
  
-class Hero{ 
+class Class1{
     public:
-    string name="Ankit kaushik";
-    int health = 100;
-    int level = 1;
-    void set(int h){
-        health = h;
-        cout << health;
-    }
+        int value_class1 = 12;
+        void print(){
+            cout << "Class1 Called"<<endl;
+        }
+};
+
+class Class2: public Class1{
+    public:
+        int value_class2 = 23;
+        void print(){
+            cout << "Class2 Called " << value_class1 <<endl;
+        }
+
+};
+
+class Class3: public Class2{
+    public:
+        void print(){
+            cout << "Class3 Called " << value_class2 << value_class1 <<endl;
+        }
 };
 
 int main(){
-    Hero *ankit = new Hero;
-    (*ankit).set(12);
+    Class2 ch;
+    ch.print();
+    Class3 sh;
+    sh.print();
 }
