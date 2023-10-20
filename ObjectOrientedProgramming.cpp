@@ -12,15 +12,6 @@ public:
         this->data = data;
         this->next = NULL;
     }
-    ~Node()
-    {
-        if (this->next != NULL)
-        {
-            delete next;
-            this->next = NULL;
-        }
-        cout << "Node Deleted: " << this->data << endl;
-    }
 };
 
 void insertAtHead(Node *&head, int data)
@@ -106,6 +97,16 @@ void print(Node *head)
         temp = temp->next;
     }
 }
+void printReverse(Node *&head)
+{
+    Node *temp = head;
+    do
+    {
+        head->next = NULL;
+        temp->next = NULL;
+
+    }
+}
 
 int main()
 {
@@ -114,15 +115,11 @@ int main()
     Node *tail = node1;
 
     insertAtHead(head, 90);
+    insertAtHead(head, 56);
+    insertAtTail(tail, 3);
     insertAtTail(tail, 70);
     insertAtPosition(head, tail, 10, 8);
     print(head);
-    cout << endl;
-    deleteNode(head, tail, 10);
-    print(head);
-
     cout << endl
-         << endl
-         << "Head is " << head->data << endl;
-    cout << "tail is " << tail->data << endl;
+         << endl;
 }
