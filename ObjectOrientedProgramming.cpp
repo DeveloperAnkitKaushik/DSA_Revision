@@ -12,5 +12,5 @@ int main(){
         cout << arr[i] << "," << arr[mid] << ",";
         mid++;
     }  
-    cout << "}";
+    cout << "}" << endl;
 }
