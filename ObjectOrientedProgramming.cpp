@@ -1,16 +1,64 @@
 #include <iostream>
+#include <queue>
  
 using namespace std;
  
+class Node{
+    public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int data){
+        this->data = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+Node* buildTree(Node* root){
+    int data;
+    cin >> data;
+    root = new Node(data);
+
+    if(data == -1){
+        return NULL;
+    }
+
+    root->left = buildTree(root->left);
+    root->right = buildTree(root->right);
+
+    return root;
+}
+
+void travesal(Node* root){
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+        Node* temp = q.front();
+        q.pop();
+        if(temp == NULL){
+            cout << endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }else{
+            cout << temp->data << "  ";
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+        }
+    }
+}
+
 int main(){
-    int arr[10] = {1,2,3,4,5,6,7,8,9,10};
-    int size = sizeof(arr)/sizeof(int);
-    int mid = size/2;
-    int n = mid;
-    cout << "{";
-    for(int i=0;i<n;i++){
-        cout << arr[i] << "," << arr[mid] << ",";
-        mid++;
-    }  
-    cout << "}" << endl;
+    Node* ak = NULL;
+    ak = buildTree(ak);
+    // 10 9 11 17 -1 -1 -1 15 -1 -1 6 18 -1 -1 -1
+
+    travesal(ak);
 }
