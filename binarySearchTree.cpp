@@ -1,54 +1,23 @@
 #include <iostream>
- 
+
 using namespace std;
- 
-class Node{
-    public:
-    int data;
-    Node* left;
-    Node* right;
 
-    Node(int data){
-        this->data = data;
-        this->left = NULL;
-        this->right = NULL;
-    }
-};
+int main()
+{
+    int n = 4;
+    int count = 0;
+    for (int i = 1; i <= n; i++) // Changed loop start condition to 1
+    {
+        for(int j=0;j<n-i;j++){ // Changed loop condition to n-i
+            cout << ' ';
+        }
+        for(int k=1;k<=i;k++){
+            cout << k;
+        }
+        for(int l=i-1;l>=1;l--){ // Corrected the loop to print decreasing numbers
+            cout << l;
+        }
 
-Node* bst(Node* root,int d){
-    if(root == NULL){
-        root = new Node(d);
-        return root;
+        cout << endl;
     }
-    if(d>root->data){
-        root->right = bst(root->right,d);
-    }else{
-        root->left = bst(root->left,d);
-    }
-    return root;
-}
-
-void insert(Node* &root){
-    int data;
-    cin >> data;
-    while(data!=-1){
-        root = bst(root,data);
-        cin >> data;
-    }
-}
-
-void display(Node* root){
-    if(root == NULL){
-        return;
-    }
-    cout << root->data << "  ";
-    if(root->left) display(root->left);
-    if(root->right) display(root->right);
-}
-
-int main(){
-    Node* root = NULL;
-    cout << "Enter data to be insert: " << endl;
-    insert(root);
-    display(root);
 }
